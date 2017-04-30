@@ -56,6 +56,7 @@ public class Percolation
             throw new IndexOutOfBoundsException("row must be greater than zero");
         if (col<=0)
             throw new IndexOutOfBoundsException("col must be greater than zero");
+        System.out.println(row+" "+col);
         return isOpen[row-1][col-1];
     }
 
@@ -87,9 +88,9 @@ public class Percolation
         return grid.connected(TOP,BOTTOM);
     }
 
-    public static void main(String args[])
+/*    public static void main(String args[])
     {
         Percolation percolation = new Percolation(3);
         System.out.print(percolation.percolates());
-    }
+    }*/
 }
