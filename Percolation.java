@@ -86,6 +86,7 @@ public class Percolation
     {
         return grid.connected(TOP,BOTTOM);
     }
+
     public static void main(String args[])
     {
 
