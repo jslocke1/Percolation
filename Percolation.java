@@ -47,7 +47,7 @@ public class Percolation
 
     private boolean isValidCoordinate(int row, int col)
     {
-        return row>=1 && col>=1;
+        return row>=1 && col>=1 && row<=3 && col<=3;
     }
 
     public boolean isOpen(int row, int col)
@@ -88,9 +88,15 @@ public class Percolation
         return grid.connected(TOP,BOTTOM);
     }
 
-/*    public static void main(String args[])
+    public static void main(String args[])
     {
         Percolation percolation = new Percolation(3);
+        percolation.open(2,1);
+        System.out.println(percolation.isOpen(2,1));
+        System.out.println(percolation.isFull(2,1));
+        percolation.open(1,3);
+        System.out.println(percolation.isOpen(1,3));
+        System.out.println(percolation.isFull(1,3));
         System.out.print(percolation.percolates());
-    }*/
+    }
 }
