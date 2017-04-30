@@ -32,9 +32,9 @@ public class Percolation
             throw new IndexOutOfBoundsException("col must be greater than zero");
         isOpen[row-1][col-1]=true;
         if (row==1)
-            grid.union(row*col,TOP);
+            grid.union(TOP,row*col);
         if (row==isOpen.length)
-            grid.union(row*col, BOTTOM);
+            grid.union(BOTTOM, row*col);
         if (isValidCoordinate(row+1,col) && isOpen(row+1,col))
             grid.union(row*col,(row+1)*col);
         if (isValidCoordinate(row-1,col) && isOpen(row-1,col))
