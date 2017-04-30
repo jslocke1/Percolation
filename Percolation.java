@@ -21,7 +21,7 @@ public class Percolation
             for (int j = 0; j< isOpen.length; j++)
                 isOpen[i][j]=false;
         grid = new WeightedQuickUnionUF(n*n+2);
-        final int BOTTOM = n*n+1;
+        BOTTOM = n*n+1;
     }
 
     public void open(int row, int col)
@@ -89,6 +89,7 @@ public class Percolation
 
     public static void main(String args[])
     {
-
+        Percolation percolation = new Percolation(3);
+        System.out.print(percolation.percolates());
     }
 }
