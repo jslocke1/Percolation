@@ -31,18 +31,36 @@ public class Percolation
         if (col<=0)
             throw new IndexOutOfBoundsException("col must be greater than zero");
         isOpen[row-1][col-1]=true;
-        if (row==1)
-            grid.union(TOP,row*col);
-        if (row==isOpen.length)
-            grid.union(BOTTOM, row*col);
-        if (isValidCoordinate(row+1,col) && isOpen(row+1,col))
-            grid.union(row*col,(row+1)*col);
-        if (isValidCoordinate(row-1,col) && isOpen(row-1,col))
-            grid.union(row*col,(row-1)*col);
-        if (isValidCoordinate(row,col+1) && isOpen(row,col+1))
-            grid.union(row*col,row*(col+1));
-        if (isValidCoordinate(row,col-1) && isOpen(row,col-1))
-            grid.union(row*col,row*(col-1));
+        if (row==1) {
+            grid.union(TOP, coordinateToNode(row,col));
+            System.out.println("1Connected "+ TOP +" and "+coordinateToNode(row,col));
+        }
+        if (row==isOpen.length) {
+            grid.union(BOTTOM, coordinateToNode(row,col));
+            System.out.println("2Connected "+ BOTTOM +" and "+coordinateToNode(row,col));
+        }
+        if (isValidCoordinate(row+1,col) && isOpen(row+1,col)) {
+            grid.union(coordinateToNode(row,col), coordinateToNode(row+1,col));
+            System.out.println("3Connected "+coordinateToNode(row,col)+ " and "+ coordinateToNode(row+1,col));
+        }
+        if (isValidCoordinate(row-1,col) && isOpen(row-1,col)) {
+            grid.union(coordinateToNode(row,col), coordinateToNode(row-1,col));
+            System.out.println("4Connected "+coordinateToNode(row,col)+ " and "+ coordinateToNode(row-1,col));
+        }
+        if (isValidCoordinate(row,col+1) && isOpen(row,col+1)) {
+            grid.union(coordinateToNode(row,col), coordinateToNode(row,col+1));
+            System.out.println("5Connected "+coordinateToNode(row,col)+ " and "+ coordinateToNode(row,col+1));
+        }
+        if (isValidCoordinate(row,col-1) && isOpen(row,col-1)) {
+            grid.union(coordinateToNode(row,col), coordinateToNode(row,col-1));
+            System.out.println("6Connected "+coordinateToNode(row,col)+ " and"+ coordinateToNode(row,col-1));
+        }
+    }
+
+    private int coordinateToNode(int row, int col){
+        row--;
+        col--;
+        return (row*isOpen.length)+col+1;
     }
 
     private boolean isValidCoordinate(int row, int col)
@@ -52,11 +70,11 @@ public class Percolation
 
     public boolean isOpen(int row, int col)
     {
-        if (row<=0)
+        if (row<1)
             throw new IndexOutOfBoundsException("row must be greater than zero");
-        if (col<=0)
+        if (col<1)
             throw new IndexOutOfBoundsException("col must be greater than zero");
-        System.out.println(row+" "+col);
+        //System.out.println(row+" "+col);
         return isOpen[row-1][col-1];
     }
 
@@ -73,13 +91,9 @@ public class Percolation
     {
         int numberOfOpenSites=0;
         for (int i = 0; i< isOpen.length; i++)
-        {
             for (int j = 0; j < isOpen.length; j++)
-            {
                 if (isOpen[i][j])
                     numberOfOpenSites++;
-            }
-        }
         return numberOfOpenSites;
     }
 
@@ -92,11 +106,8 @@ public class Percolation
     {
         Percolation percolation = new Percolation(3);
         percolation.open(2,1);
-        System.out.println(percolation.isOpen(2,1));
-        System.out.println(percolation.isFull(2,1));
         percolation.open(1,3);
-        System.out.println(percolation.isOpen(1,3));
-        System.out.println(percolation.isFull(1,3));
+        percolation.open(3,1);
         System.out.print(percolation.percolates());
     }
 }
