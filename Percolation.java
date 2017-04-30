@@ -82,6 +82,10 @@ public class Percolation
         return numberOfOpenSites;
     }
 
+    public boolean percolates()
+    {
+        return grid.connected(TOP,BOTTOM);
+    }
     public static void main(String args[])
     {
 
