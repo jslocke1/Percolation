@@ -25,8 +25,9 @@ public class PercolationStats
         int blocksOpen = 0;
         while (!percolation.percolates())
         {
-            int row = StdRandom.uniform(1,n);
-            int col = StdRandom.uniform(1,n);
+            System.out.println(blocksOpen);
+            int row = StdRandom.uniform(1,n+1);
+            int col = StdRandom.uniform(1,n+1);
             percolation.open(row,col);
             blocksOpen++;
         }

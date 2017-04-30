@@ -31,30 +31,18 @@ public class Percolation
         if (col<=0)
             throw new IndexOutOfBoundsException("col must be greater than zero");
         isOpen[row-1][col-1]=true;
-        if (row==1) {
+        if (row==1)
             grid.union(TOP, coordinateToNode(row,col));
-            System.out.println("1Connected "+ TOP +" and "+coordinateToNode(row,col));
-        }
-        if (row==isOpen.length) {
+        if (row==isOpen.length)
             grid.union(BOTTOM, coordinateToNode(row,col));
-            System.out.println("2Connected "+ BOTTOM +" and "+coordinateToNode(row,col));
-        }
-        if (isValidCoordinate(row+1,col) && isOpen(row+1,col)) {
+        if (isValidCoordinate(row+1,col) && isOpen(row+1,col))
             grid.union(coordinateToNode(row,col), coordinateToNode(row+1,col));
-            System.out.println("3Connected "+coordinateToNode(row,col)+ " and "+ coordinateToNode(row+1,col));
-        }
-        if (isValidCoordinate(row-1,col) && isOpen(row-1,col)) {
+        if (isValidCoordinate(row-1,col) && isOpen(row-1,col))
             grid.union(coordinateToNode(row,col), coordinateToNode(row-1,col));
-            System.out.println("4Connected "+coordinateToNode(row,col)+ " and "+ coordinateToNode(row-1,col));
-        }
-        if (isValidCoordinate(row,col+1) && isOpen(row,col+1)) {
+        if (isValidCoordinate(row,col+1) && isOpen(row,col+1))
             grid.union(coordinateToNode(row,col), coordinateToNode(row,col+1));
-            System.out.println("5Connected "+coordinateToNode(row,col)+ " and "+ coordinateToNode(row,col+1));
-        }
-        if (isValidCoordinate(row,col-1) && isOpen(row,col-1)) {
+        if (isValidCoordinate(row,col-1) && isOpen(row,col-1))
             grid.union(coordinateToNode(row,col), coordinateToNode(row,col-1));
-            System.out.println("6Connected "+coordinateToNode(row,col)+ " and"+ coordinateToNode(row,col-1));
-        }
     }
 
     private int coordinateToNode(int row, int col){
@@ -102,12 +90,13 @@ public class Percolation
         return grid.connected(TOP,BOTTOM);
     }
 
-    public static void main(String args[])
+   /* public static void main(String args[])
     {
         Percolation percolation = new Percolation(3);
         percolation.open(2,1);
         percolation.open(1,3);
         percolation.open(3,1);
+        percolation.open(1,1);
         System.out.print(percolation.percolates());
-    }
+    }*/
 }
